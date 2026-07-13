@@ -10,6 +10,7 @@ import {
   RESEARCH_MOTIVATION,
   SYMBOL_EMOTION_MAPPINGS,
   VALIDATION_CONCEPTS,
+  EMOTION_KEYWORD_MAPPING,
 } from '../../data/project3Content';
 import { ProjectSectionIntro } from '../ProjectSectionIntro';
 import styles from './Project3ResearchNarrative.module.css';
@@ -163,9 +164,9 @@ function AigcJewelryWorkflow() {
             <p className={styles.aigcPromptValue}>{AIGC_SECTION.aiModel}</p>
           </div>
         </div>
-        <div className={styles.aigcStructuredPrompt}>
-          <p className={styles.aigcPromptLabel}>{AIGC_SECTION.structuredPromptHeading}</p>
-          <div className={styles.aigcStructuredPromptBox}>{AIGC_SECTION.structuredPrompt}</div>
+        <div className={styles.aigcGenerationProcess}>
+          <p className={styles.aigcPromptLabel}>{AIGC_SECTION.generationProcessHeading}</p>
+          <p className={styles.aigcGenerationProcessText}>{AIGC_SECTION.generationProcess}</p>
         </div>
       </aside>
 
@@ -284,20 +285,6 @@ export function Project3ResearchNarrative() {
           </figure>
 
           <div className={styles.translationFlow} aria-label="Peircean symbolic translation flow">
-            <div className={styles.translationFlowLegend} aria-hidden="true">
-              {ARTIFACT_SELECTION.flowStages.map((stage, index) => (
-                <Fragment key={stage.term}>
-                  {index > 0 ? (
-                    <span className={styles.translationFlowArrow}>→</span>
-                  ) : null}
-                  <div className={styles.translationFlowStage}>
-                    <p className={styles.translationFlowTerm}>{stage.term}</p>
-                    <p className={styles.translationFlowLabel}>{stage.label}</p>
-                  </div>
-                </Fragment>
-              ))}
-            </div>
-
             {ARTIFACT_SELECTION.analysisCards.map((card) => (
               <article key={card.id} className={styles.translationEntry}>
                 <p className={styles.translationEntryTitle}>
@@ -326,7 +313,7 @@ export function Project3ResearchNarrative() {
                     →
                   </span>
                   <div className={styles.translationCell}>
-                    <p className={styles.translationLabel}>Design Translation</p>
+                    <p className={styles.translationLabel}>Design</p>
                     <p className={styles.translationText}>{card.designTranslation}</p>
                   </div>
                 </div>
@@ -338,11 +325,8 @@ export function Project3ResearchNarrative() {
 
       <FlowArrow />
 
-      <NarrativeBlock id="emotion-keyword-framework" number="04" title="Emotion Keyword Framework">
-        <ProjectSectionIntro>
-          Extracted symbols are structured into emotional keywords that guide jewelry design
-          direction.
-        </ProjectSectionIntro>
+      <NarrativeBlock id="emotion-keyword-framework" number="04" title="Emotional Keyword Mapping">
+        <ProjectSectionIntro>{EMOTION_KEYWORD_MAPPING.intro}</ProjectSectionIntro>
         <div className={styles.mappingGrid} aria-label="Symbol to emotion mapping">
           {SYMBOL_EMOTION_MAPPINGS.map((item) => (
             <article key={item.id} className={styles.mappingItem}>

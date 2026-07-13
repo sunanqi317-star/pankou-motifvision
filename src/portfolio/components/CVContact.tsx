@@ -13,7 +13,12 @@ export function ContactSection() {
           {profile.email}
         </a>
       </p>
-      <a href={profile.cvPath} download className="portfolio-btn portfolio-btn-primary profile-cv-btn mt-3">
+      <a
+        href={profile.cvPath}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="portfolio-btn portfolio-btn-primary profile-cv-btn mt-3"
+      >
         Download CV
       </a>
     </ContentSection>

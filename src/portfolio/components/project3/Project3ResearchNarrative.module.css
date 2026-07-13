@@ -92,15 +92,20 @@
   display: grid;
   grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
   gap: 1.25rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .artifactIdentityCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
   margin: 0;
-  padding: 0.45rem;
+  padding: 0.55rem;
   border-radius: 0.5rem;
   border: 1px solid var(--p3-border-color);
   background: rgba(255, 252, 247, 0.82);
+  box-sizing: border-box;
 }
 
 .artifactMedia {
@@ -109,6 +114,8 @@
 }
 
 .artifactImageSlot {
+  flex: 1 1 auto;
+  min-height: 0;
   aspect-ratio: 4 / 5;
   display: flex;
   align-items: center;
@@ -131,31 +138,32 @@
 .artifactCaption {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
-  margin: 0.45rem 0 0;
-  padding-top: 0.45rem;
+  flex: 0 0 auto;
+  gap: 0.2rem;
+  margin: 0.55rem 0 0;
+  padding-top: 0.5rem;
   border-top: 1px solid rgba(91, 70, 58, 0.08);
 }
 
 .artifactName {
-  margin: 0 0 0.12rem;
+  margin: 0;
   font-family: var(--font-sans);
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.4;
   color: var(--p3-title-color);
 }
 
 .artifactMeta {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  line-height: 1.65;
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: var(--p3-body-color);
 }
 
 .artifactMeta + .artifactMeta {
-  margin-top: 0.08rem;
+  margin-top: 0;
 }
 
 .peirceanBridge {
@@ -212,53 +220,10 @@
 }
 
 .translationFlow {
-  padding: 0.5rem 0.55rem;
+  padding: 0.45rem 0.55rem;
   border-radius: 0.5rem;
   border: 1px solid var(--p3-border-color);
   background: rgba(255, 252, 247, 0.72);
-}
-
-.translationFlowLegend {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.15rem 0.2rem;
-  margin-bottom: 0.45rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid rgba(91, 70, 58, 0.08);
-}
-
-.translationFlowStage {
-  flex: 1 1 0;
-  min-width: 0;
-  text-align: center;
-}
-
-.translationFlowTerm {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--p3-accent-color);
-}
-
-.translationFlowLabel {
-  margin: 0.06rem 0 0;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  line-height: 1.35;
-  color: rgb(61 43 31 / 52%);
-}
-
-.translationFlowArrow {
-  flex: 0 0 auto;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  line-height: 1;
-  color: var(--p3-muted-color);
 }
 
 .translationEntry {
@@ -281,13 +246,17 @@
 .translationRow {
   display: flex;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.2rem 0.25rem;
 }
 
 .translationCell {
+  display: flex;
   flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
   min-width: 0;
+  text-align: center;
 }
 
 .translationLabel {
@@ -297,15 +266,23 @@
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+  text-align: center;
   color: var(--p3-accent-color);
 }
 
 .translationText {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0.1rem 0 0;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   line-height: 1.65;
+  text-align: center;
   color: var(--p3-body-color);
+  white-space: pre-line;
 }
 
 .translationRowArrow {
@@ -443,7 +420,7 @@
 
 .aigcBoard {
   display: grid;
-  grid-template-columns: minmax(0, 0.38fr) auto minmax(0, 0.62fr);
+  grid-template-columns: minmax(0, 0.42fr) auto minmax(0, 0.58fr);
   gap: 0.5rem;
   align-items: start;
 }
@@ -461,7 +438,10 @@
 .aigcPreviewPanel {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   min-width: 0;
+  height: auto;
+  box-sizing: border-box;
   padding: 0.4rem 0.44rem 0.34rem;
   border-radius: 0.625rem;
   border: 1px solid rgba(91, 70, 58, 0.1);
@@ -470,6 +450,7 @@
 
 .aigcPromptPanel {
   gap: 0.2rem;
+  align-self: center;
 }
 
 .aigcPreviewPanel {
@@ -490,6 +471,7 @@
 .aigcPromptStack {
   display: flex;
   flex-direction: column;
+  flex: 0 0 auto;
   gap: 0.1rem;
 }
 
@@ -518,49 +500,36 @@
   color: var(--p3-body-color);
 }
 
-.aigcStructuredPrompt {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.aigcStructuredPromptBox {
-  max-height: 120px;
-  min-height: 72px;
-  overflow-y: auto;
-  padding: 11px 12px;
+.aigcGenerationProcess {
+  flex: 0 0 auto;
+  margin-top: 0;
+  padding: 0.22rem 0.24rem 0.18rem;
   border-radius: 0.4rem;
-  border: 1px solid rgba(91, 70, 58, 0.07);
-  background: rgba(251, 247, 239, 0.38);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  border: 1px solid rgba(91, 70, 58, 0.06);
+  background: rgba(251, 247, 239, 0.28);
+}
+
+.aigcGenerationProcessText {
+  margin: 0;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  line-height: 1.65;
-  color: rgb(61 43 31 / 74%);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(184, 116, 96, 0.22) transparent;
-}
-
-.aigcStructuredPromptBox::-webkit-scrollbar {
-  width: 3px;
-}
-
-.aigcStructuredPromptBox::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: rgba(184, 116, 96, 0.22);
+  line-height: 1.4;
+  color: var(--p3-body-color);
 }
 
 .aigcPreviewHeading {
   margin: 0 0 0.02rem;
+  flex: 0 0 auto;
 }
 
 .aigcPreviewFrame {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  max-height: 372px;
-  padding: 10px;
+  min-height: 0;
+  padding: 0.4rem;
   overflow: hidden;
   border-radius: 0.5rem;
   border: 1px solid rgba(91, 70, 58, 0.05);
@@ -596,6 +565,7 @@
 .aigcConceptMeta {
   display: flex;
   justify-content: center;
+  flex: 0 0 auto;
   padding: 0.1rem 0.14rem 0;
   text-align: center;
 }
@@ -614,6 +584,7 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+  flex: 0 0 auto;
   gap: 0.28rem;
   padding-top: 0.1rem;
 }
@@ -673,14 +644,33 @@
 }
 
 .validationImageFrame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: block;
   aspect-ratio: 4 / 3;
   width: 100%;
-  padding: 0.45rem;
+  padding: 0;
   overflow: hidden;
   border-bottom: 1px solid rgba(91, 70, 58, 0.08);
+}
+
+.validationImageFrame .conceptImage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.validationImageFrame .conceptImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
 }
 
 .validationCaption {
@@ -808,21 +798,18 @@
   .artifactLayout {
     grid-template-columns: 1fr;
     gap: 1rem;
+    align-items: start;
   }
 
   .artifactIdentityCard {
     max-width: 16rem;
+    height: auto;
+    min-height: 0;
   }
 
-  .translationFlowLegend {
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 0.25rem;
-  }
-
-  .translationFlowStage {
-    flex: 1 1 calc(50% - 0.75rem);
-    min-width: 4.5rem;
+  .artifactImageSlot {
+    flex: 0 0 auto;
+    aspect-ratio: 4 / 5;
   }
 
   .translationRow {
@@ -904,6 +891,12 @@
   .aigcBoard {
     grid-template-columns: 1fr;
     gap: 0.4rem;
+    align-items: start;
+  }
+
+  .aigcPromptPanel,
+  .aigcPreviewPanel {
+    height: auto;
   }
 
   .aigcFlowConnector {
@@ -911,9 +904,11 @@
   }
 
   .aigcPreviewFrame {
+    flex: 0 0 auto;
     aspect-ratio: 4 / 3;
     max-height: none;
-    padding: 10px;
+    min-height: 10rem;
+    padding: 0.4rem;
   }
 
   .aigcConceptNav {
@@ -932,6 +927,11 @@
 }
 
 @media (min-width: 901px) {
+  .artifactImageSlot {
+    aspect-ratio: auto;
+    min-height: 14rem;
+  }
+
   .flowTrack {
     display: flex;
     align-items: center;

@@ -4,7 +4,7 @@ export const profile = {
   cvPath: '/cv.pdf',
   profileImage: '/images/profile.jpg',
   academicIdentity: {
-    role: 'Master of Design Candidate',
+    role: 'Master of Design student',
     institution: 'China University of Geosciences, Beijing',
   },
   researchInterests: [
@@ -25,30 +25,30 @@ export type AboutMeSegment = {
 export const aboutMeParagraphs: AboutMeSegment[][] = [
   [
     { text: 'I am currently a ' },
-    { text: 'Master of Design Candidate', emphasis: true },
+    { text: 'Master of Design student', emphasis: true },
     { text: ' at ' },
     { text: 'China University of Geosciences, Beijing', emphasis: true },
     { text: ', and I am expected to graduate in ' },
     { text: 'June 2027', emphasis: true },
     {
-      text: '. My research interests lie at the intersection of cultural heritage, digital technologies, human-computer interaction, creative artificial intelligence, and interactive experiences.',
+      text: '. My research focuses on the relationship between cultural heritage, emerging technologies, and human-centered design, exploring how digital approaches and AI-assisted methods can support the interpretation, transformation, and communication of cultural knowledge.',
     },
   ],
   [
     {
-      text: 'My current research explores how digital methods, computational approaches, and AI-assisted tools can support the analysis, transformation, and expression of cultural knowledge. I investigate how traditional knowledge can be documented, interpreted, and transformed into new forms of visual expression, interactive experiences, and generative outcomes within digital environments.',
+      text: 'My current research investigates how traditional cultural knowledge can be documented, structured, and transformed through digital methods, computational approaches, and creative AI tools. Through projects involving cultural heritage digitization, generative design, and interactive experiences, I explore new ways of connecting historical narratives with contemporary forms of visual expression and human-centered experiences.',
     },
   ],
   [
     { text: 'I am preparing for ' },
     { text: 'PhD opportunities for 2027 entry', emphasis: true },
     {
-      text: ' and hope to further explore interdisciplinary relationships between technology, culture, and human experiences, particularly how emerging technologies can support knowledge expression, cultural communication, and experiential innovation.',
+      text: ', with the aim of further investigating how emerging technologies can contribute to cultural understanding, knowledge representation, and experiential innovation. My future research interests focus on interdisciplinary approaches combining digital humanities, artificial intelligence, interaction design, and cultural studies.',
     },
   ],
   [
     {
-      text: 'Beyond academic research, I enjoy exploring food and traveling as ways to experience different cultures and lifestyles. These experiences continue to influence my understanding of cultural narratives, environmental experiences, and human-centered research approaches.',
+      text: 'Beyond academic research, I enjoy exploring food and traveling as ways of experiencing different cultures and lifestyles. These experiences continue to shape my understanding of cultural narratives, environmental contexts, and human-centered approaches to design research.',
     },
   ],
 ] as const;
@@ -241,5 +241,5 @@ export const skills = [
 export const navLinks = [
   { id: 'about-me', label: 'About', path: '/' as const },
   { id: 'projects', label: 'Projects', path: '/projects' as const },
-  { id: 'cv', label: 'CV', href: profile.cvPath, download: true },
+  { id: 'cv', label: 'Download CV', href: profile.cvPath, external: true },
 ] as const;

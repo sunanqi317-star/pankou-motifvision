@@ -20,7 +20,8 @@ function NavAnchor({
       <a
         href={link.href}
         className="nav-link"
-        download={link.download ? '' : undefined}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {link.label}
       </a>

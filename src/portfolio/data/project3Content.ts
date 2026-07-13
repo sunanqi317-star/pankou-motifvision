@@ -2,7 +2,7 @@ export const PROJECT3_NARRATIVE = [
   'Research Motivation',
   'Application of Peircean Semiotics',
   'Artifact Symbol Extraction',
-  'Emotion Keyword Framework',
+  'Emotional Keyword Mapping',
   'AIGC-driven Jewelry Generation',
   'Emotional Healing Validation',
 ] as const;
@@ -42,7 +42,7 @@ export const PEIRCE_SEMIOTICS = {
     { term: 'Sign', label: 'Visible Features' },
     { term: 'Object', label: 'Cultural Meaning' },
     { term: 'Interpretant', label: 'Emotional Response' },
-    { term: 'Jewelry Application', label: 'Healing-oriented Design' },
+    { term: 'Application', label: 'Healing-oriented Design' },
   ],
 } as const;
 
@@ -64,29 +64,29 @@ export const ARTIFACT_SELECTION = {
     {
       id: 'expression',
       number: '01',
-      title: 'Expressive Face',
+      title: 'Smiling Expression',
       sign: 'Smiling facial expression',
-      object: 'Entertainment performance and joyful social atmosphere',
-      interpretant: 'Joy · Comfort · Positive emotional connection',
-      designTranslation: 'Warmth · Emotional companionship',
+      object: 'Folk performance\nJoyful interaction',
+      interpretant: 'Delight · Warmth\nEmotional connection',
+      designTranslation: 'Warmth · Companionship\nApproachable form',
     },
     {
       id: 'gesture',
       number: '02',
-      title: 'Dynamic Gesture',
-      sign: 'Raised arms and performing posture',
-      object: 'Musical performance and ritual expression',
-      interpretant: 'Vitality · Openness · Human connection',
-      designTranslation: 'Dynamic wearable expression',
+      title: 'Drumming Posture',
+      sign: 'Dynamic drumming gesture',
+      object: 'Musical performance\nRitual expression',
+      interpretant: 'Vitality · Openness\nJoyful interaction',
+      designTranslation: 'Dynamic form\nRhythmic expression',
     },
     {
       id: 'performance',
       number: '03',
-      title: 'Rhythmic Performance',
-      sign: 'Drumming movement and dynamic posture',
-      object: 'Festive celebration and communal interaction',
-      interpretant: 'Warmth · Celebration · Emotional engagement',
-      designTranslation: 'Interactive emotional jewelry',
+      title: 'Performance Rhythm',
+      sign: 'Drumming movement\nBody rhythm',
+      object: 'Festive performance\nShared celebration',
+      interpretant: 'Joy · Emotional presence',
+      designTranslation: 'Rhythmic elements\nExpressive form',
     },
   ],
 } as const;
@@ -95,26 +95,26 @@ export const SYMBOL_EMOTION_MAPPINGS = [
   {
     id: 'expression',
     visual: 'Smiling face',
-    cultural: 'Festive entertainment',
-    emotional: 'Joy · warmth',
+    cultural: 'Joyful performance',
+    emotional: 'Warmth · Delight',
   },
   {
     id: 'drumming',
     visual: 'Drumming gesture',
-    cultural: 'Ritual performance',
-    emotional: 'Vitality · rhythm',
+    cultural: 'Rhythmic performance',
+    emotional: 'Vitality · Cheerfulness',
   },
   {
-    id: 'sleeves',
-    visual: 'Raised sleeves',
-    cultural: 'Performative movement',
-    emotional: 'Human connection',
+    id: 'crossed-leg',
+    visual: 'Raised-leg gesture',
+    cultural: 'Playful dynamic posture',
+    emotional: 'Playfulness · Vitality',
   },
   {
     id: 'posture',
-    visual: 'Seated posture',
-    cultural: 'Communal gathering',
-    emotional: 'Emotional comfort',
+    visual: 'Stable seated posture',
+    cultural: 'Composed presence',
+    emotional: 'Composure · Affability',
   },
 ] as const;
 
@@ -122,7 +122,7 @@ export const KEYWORD_DIMENSIONS = [
   {
     number: '01',
     title: 'Emotional Guidance',
-    keywords: ['Warmth', 'Comfort', 'Encouragement', 'Emotional Stability'],
+    keywords: ['Warmth', 'Comfort', 'Companionship', 'Ease'],
   },
   {
     number: '02',
@@ -132,14 +132,19 @@ export const KEYWORD_DIMENSIONS = [
   {
     number: '03',
     title: 'Aesthetic Style',
-    keywords: ['Playfulness', 'Vitality', 'Expressiveness'],
+    keywords: ['Dynamism', 'Liveliness', 'Sense of Rhythm'],
   },
   {
     number: '04',
-    title: 'Wearing Functionality',
-    keywords: ['Companionship', 'Personal Connection', 'Everyday Comfort'],
+    title: 'Wearing Function',
+    keywords: ['Everyday Wear', 'Intimate Experience'],
   },
 ] as const;
+
+export const EMOTION_KEYWORD_MAPPING = {
+  intro:
+    'Cultural features are extracted through symbolic analysis and translated into emotional keywords that guide jewelry design.',
+} as const;
 
 export const AIGC_SECTION = {
   intro:
@@ -148,9 +153,9 @@ export const AIGC_SECTION = {
   previewHeading: 'Generated Concept Preview',
   aiModelLabel: 'AI Model',
   aiModel: '即梦 AI / Dreamina AI',
-  structuredPromptHeading: 'Structured Generation Prompt',
-  structuredPrompt:
-    'Emotion-oriented cultural jewelry, inspired by the Eastern Han Drumming and Chanting Figurine, warmth, comfort, cheerfulness, vitality, smiling face symbol, drumming gesture, rounded wearable form, soft contours, delicate metal craftsmanship, symbolic cultural abstraction, healing-oriented jewelry design, gentle contemporary aesthetic.',
+  generationProcessHeading: 'Role of AIGC Translation',
+  generationProcess:
+    'AIGC serves as a visual exploration bridge, transforming emotional values and cultural symbols into wearable jewelry design concepts.',
   promptSections: [
     {
       label: 'Cultural Source',
@@ -218,7 +223,7 @@ export const JEWELRY_CONCEPTS = [
 export const HEALING_VALIDATION = {
   intro:
     'Generated concepts are assessed as research evidence — tracing how emotional intention, cultural translation, and design strategy converge in wearable outcomes that support healing-oriented experience.',
-  evaluationHeading: 'Emotional Response Evaluation',
+  evaluationHeading: 'Design Response Evaluation',
 } as const;
 
 export const VALIDATION_CONCEPTS = [
@@ -226,71 +231,71 @@ export const VALIDATION_CONCEPTS = [
     id: 'concept-01',
     label: 'Concept 01',
     name: 'Warmth & Rhythm',
-    image: '/images/a1.jpg',
+    image: '/images/v1.jpg',
     frameBackground: '#f2eae1',
     blendFrame: true,
     emotionalTheme: 'Warmth · Rhythm',
-    culturalTranslation: 'Festive drumming · Communal gathering',
-    designStrategy: 'Rounded contours · Soft wearable form',
-    emotionalResponse: 'Proximate care · Gentle encouragement',
+    culturalTranslation: 'Festive drumming · Joyful gathering',
+    designStrategy: 'Circular drum form · Soft contours',
+    emotionalResponse: 'Sense of closeness · Warm companionship',
   },
   {
     id: 'concept-02',
     label: 'Concept 02',
     name: 'Cheerfulness & Gesture',
-    image: '/images/a2.png',
+    image: '/images/v2.jpg',
     frameBackground: '#f7f1e8',
     blendFrame: false,
     emotionalTheme: 'Cheerfulness · Gesture',
-    culturalTranslation: 'Smiling expression · Performative movement',
-    designStrategy: 'Expressive contours · Upward gesture form',
-    emotionalResponse: 'Joyful uplift · Positive connection',
+    culturalTranslation: 'Smiling expression · Drumming gesture',
+    designStrategy: 'Body gesture · Flowing lines and rhythmic variation',
+    emotionalResponse: 'Joyful experience · Positive connection',
   },
   {
     id: 'concept-03',
     label: 'Concept 03',
     name: 'Comfort & Stability',
-    image: '/images/a3.png',
+    image: '/images/v3.jpg',
     frameBackground: '#f7f1e8',
     blendFrame: false,
     emotionalTheme: 'Comfort · Stability',
-    culturalTranslation: 'Seated posture · Emotional grounding',
-    designStrategy: 'Balanced structure · Body-adjacent form',
-    emotionalResponse: 'Reassurance · Emotional stability',
+    culturalTranslation: 'Seated posture · Calm presence',
+    designStrategy: 'Stable composition · Balanced structure and comfortable wearing',
+    emotionalResponse: 'Sense of reassurance · Emotional comfort',
   },
   {
     id: 'concept-04',
     label: 'Concept 04',
     name: 'Companionship & Celebration',
-    image: '/images/a4.jpg',
+    image: '/images/v4.jpg',
     frameBackground: '#f7f1e8',
     blendFrame: false,
     emotionalTheme: 'Companionship · Celebration',
-    culturalTranslation: 'Ritual performance · Shared festivity',
-    designStrategy: 'Interactive detail · Symbolic abstraction',
-    emotionalResponse: 'Social warmth · Celebratory presence',
+    culturalTranslation: 'Performance ritual · Shared celebration',
+    designStrategy: 'Symbolic elements · Cultural memory and emotional expression',
+    emotionalResponse: 'Social warmth · Celebratory atmosphere',
   },
 ] as const;
 
 export const EMOTIONAL_RESPONSE_EVALUATION = [
   {
-    id: 'dimensions',
-    label: 'Evaluation Dimensions',
-    value: 'Warmth · Cheerfulness · Comfort · Vitality',
-  },
-  {
-    id: 'resonance',
-    label: 'Emotional Resonance',
-    value: 'Keyword alignment between artifact emotion and wearable expression',
+    id: 'alignment',
+    label: 'Emotional Alignment',
+    value: 'Consistency between extracted emotional keywords and jewelry concepts',
   },
   {
     id: 'cultural',
-    label: 'Cultural Expression',
-    value: 'Symbolic readability through semiotic translation to form',
+    label: 'Cultural Translation',
+    value: 'Transformation of cultural symbols into recognizable jewelry elements',
+  },
+  {
+    id: 'coherence',
+    label: 'Design Coherence',
+    value: 'Relationship between symbolic features and design strategies',
   },
   {
     id: 'experience',
-    label: 'User Experience',
-    value: 'Wearability, scale, and everyday emotional companionship',
+    label: 'Wearable Experience',
+    value: 'Consideration of wearable form, scale, and daily applicability',
   },
 ] as const;

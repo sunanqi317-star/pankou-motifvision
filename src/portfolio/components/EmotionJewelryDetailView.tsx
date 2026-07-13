@@ -54,6 +54,24 @@ export function EmotionJewelryDetailView({ project, onBack }: EmotionJewelryDeta
                 ))}
               </div>
             </div>
+
+            <div className="project3-hero-scale">
+              <h2 className="project3-hero-mini-heading">Research Scale</h2>
+              <dl className="project3-hero-scale-list">
+                <div className="project3-hero-scale-item">
+                  <dt className="project3-hero-scale-value">1</dt>
+                  <dd>Historical artifact studied</dd>
+                </div>
+                <div className="project3-hero-scale-item">
+                  <dt className="project3-hero-scale-value">3</dt>
+                  <dd>Symbolic features extracted</dd>
+                </div>
+                <div className="project3-hero-scale-item">
+                  <dt className="project3-hero-scale-value">4</dt>
+                  <dd>Jewelry concepts generated through AIGC</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
 

@@ -96,6 +96,60 @@
   line-height: 1.25;
 }
 
+.project-emotion-jewelry .project3-hero-scale {
+  margin: 0;
+  padding-top: 0;
+  flex-shrink: 0;
+}
+
+.project-emotion-jewelry .project3-hero-scale-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.2rem 0.75rem;
+  margin: 0;
+  align-items: start;
+}
+
+.project-emotion-jewelry .project3-hero-scale-item {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.1rem 0.25rem;
+  align-items: start;
+  margin: 0;
+  min-width: 0;
+}
+
+.project-emotion-jewelry .project3-hero-scale-value {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--p3-accent-color);
+}
+
+.project-emotion-jewelry .project3-hero-scale-item dt,
+.project-emotion-jewelry .project3-hero-scale-value {
+  display: block;
+}
+
+.project-emotion-jewelry .project3-hero-scale-item dd {
+  display: block;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--p3-body-color);
+}
+
+@media (max-width: 767px) {
+  .project-emotion-jewelry .project3-hero-scale-list {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
 .project-emotion-jewelry .project-process-timeline--narrative {
   display: flex;
   flex-wrap: nowrap;
@@ -219,8 +273,11 @@
 }
 
 .project-emotion-jewelry .project-section-intro {
-  font-size: 0.96875rem;
-  line-height: 1.75;
+  margin: 0 0 0.55rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: normal;
   color: #8d7f75;
 }
 

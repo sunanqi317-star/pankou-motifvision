@@ -286,7 +286,7 @@ export const projectDetails: ProjectDetail[] = [
       'Research Motivation',
       'Application of Peircean Semiotics',
       'Artifact Selection',
-      'Emotion Keyword Framework',
+      'Emotional Keyword Mapping',
       'AIGC-driven Jewelry Generation',
       'Emotional Healing Validation',
     ],

@@ -10,6 +10,96 @@
   --p1-soft-accent-bg: rgba(247, 234, 223, 0.45);
 }
 
+/* Cover hero — Keywords + Research Scale (Project 2 style) */
+
+.project-pankou-gene-lora .project1-hero-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 0.3rem;
+  flex: 0 0 auto;
+}
+
+.project-pankou-gene-lora .project1-hero-mini-heading {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p1-accent-color);
+}
+
+.project-pankou-gene-lora .project1-hero-keywords {
+  max-width: none;
+  margin: 0;
+}
+
+.project-pankou-gene-lora .project1-hero-keyword-list {
+  gap: 0.2rem 0.25rem;
+  margin-top: 0;
+}
+
+.project-pankou-gene-lora .project1-hero-keyword-list .project-keyword {
+  padding: 0.12rem 0.38rem;
+  font-size: 0.625rem;
+  line-height: 1.3;
+}
+
+.project-pankou-gene-lora .project1-hero-scale {
+  margin: 0;
+  padding-top: 0;
+  flex-shrink: 0;
+}
+
+.project-pankou-gene-lora .project1-hero-scale-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.2rem 0.75rem;
+  margin: 0;
+  align-items: start;
+}
+
+.project-pankou-gene-lora .project1-hero-scale-item {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.1rem 0.25rem;
+  align-items: start;
+  margin: 0;
+  min-width: 0;
+}
+
+.project-pankou-gene-lora .project1-hero-scale-value {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--p1-accent-color);
+}
+
+.project-pankou-gene-lora .project1-hero-scale-item dt,
+.project-pankou-gene-lora .project1-hero-scale-value {
+  display: block;
+}
+
+.project-pankou-gene-lora .project1-hero-scale-item dd {
+  display: block;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--p1-body-color);
+}
+
+@media (max-width: 767px) {
+  .project-pankou-gene-lora .project1-hero-scale-list {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
 .project-pankou-gene-lora .project-section,
 .project-pankou-gene-lora section[id] {
   scroll-margin-top: 96px;

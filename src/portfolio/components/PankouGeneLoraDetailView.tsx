@@ -234,12 +234,35 @@ export function PankouGeneLoraDetailView({ project, onBack }: PankouGeneLoraDeta
               </span>
               {project.institution}
             </p>
-            <div className="project-keyword-list">
-              {project.keywords.map((keyword) => (
-                <span key={keyword} className="project-keyword">
-                  {keyword}
-                </span>
-              ))}
+            <div className="project1-hero-panel">
+              <div className="project1-hero-keywords">
+                <h2 className="project1-hero-mini-heading">Keywords</h2>
+                <div className="project-keyword-list project1-hero-keyword-list">
+                  {project.keywords.map((keyword) => (
+                    <span key={keyword} className="project-keyword">
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="project1-hero-scale">
+                <h2 className="project1-hero-mini-heading">Research Scale</h2>
+                <dl className="project1-hero-scale-list">
+                  <div className="project1-hero-scale-item">
+                    <dt className="project1-hero-scale-value">200+</dt>
+                    <dd>Historical images analyzed</dd>
+                  </div>
+                  <div className="project1-hero-scale-item">
+                    <dt className="project1-hero-scale-value">50+</dt>
+                    <dd>Digital models reconstructed</dd>
+                  </div>
+                  <div className="project1-hero-scale-item">
+                    <dt className="project1-hero-scale-value">7D</dt>
+                    <dd>Cultural gene labeling framework developed</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </div>
 
