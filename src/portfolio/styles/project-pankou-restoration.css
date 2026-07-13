@@ -1,0 +1,1731 @@
+/* Project 2 — restoration workflow (scoped) */
+
+.project-pankou-restoration {
+  --p2-title-color: #3f2c27;
+  --p2-body-color: #8d7f75;
+  --p2-muted-color: #a99d95;
+  --p2-accent-color: #b87460;
+  --p2-border-color: rgba(91, 70, 58, 0.12);
+  --p2-soft-bg: rgba(251, 247, 239, 0.58);
+  --p2-soft-accent-bg: rgba(247, 234, 223, 0.45);
+}
+
+/* ── Hero: balanced research panel ── */
+
+.project-pankou-restoration .project2-hero {
+  align-items: start;
+  margin-bottom: 0.625rem;
+  padding-bottom: 0.375rem;
+}
+
+.project-pankou-restoration .project-hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: start;
+  min-height: 0;
+  gap: 0;
+}
+
+.project-pankou-restoration .project-overview-number {
+  margin: 0 0 0.125rem;
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+}
+
+.project-pankou-restoration .project-hero-title {
+  margin: 0;
+  font-size: 1.3125rem;
+  line-height: 1.18;
+  letter-spacing: 0.006em;
+}
+
+.project-pankou-restoration .project-hero-subtitle {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.project-pankou-restoration .project-hero-meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgb(61 43 31 / 62%);
+}
+
+.project-pankou-restoration .project2-hero-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 0.3rem;
+  flex: 0 0 auto;
+}
+
+.project-pankou-restoration .project2-hero-description {
+  max-width: none;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.48;
+  color: rgb(61 43 31 / 74%);
+}
+
+.project-pankou-restoration .project2-hero-mini-heading {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p2-accent-color);
+}
+
+.project-pankou-restoration .project2-hero-research-focus,
+.project-pankou-restoration .project2-hero-keywords,
+.project-pankou-restoration .project2-hero-scale {
+  max-width: none;
+  margin: 0;
+}
+
+.project-pankou-restoration .project2-hero-keyword-list {
+  gap: 0.2rem 0.25rem;
+  margin-top: 0;
+}
+
+.project-pankou-restoration .project2-hero-keyword-list .project-keyword {
+  padding: 0.12rem 0.38rem;
+  font-size: 0.625rem;
+  line-height: 1.3;
+}
+
+.project-pankou-restoration .project2-hero-research-focus {
+  padding-top: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.project-pankou-restoration .project2-hero-focus-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.16rem;
+}
+
+.project-pankou-restoration .project2-hero-focus-list li {
+  position: relative;
+  padding-left: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.38;
+  color: rgb(61 43 31 / 74%);
+}
+
+.project-pankou-restoration .project2-hero-focus-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--p2-muted-color);
+}
+
+.project-pankou-restoration .project2-hero-scale {
+  margin: 0;
+  padding-top: 0;
+  flex-shrink: 0;
+}
+
+.project-pankou-restoration .project2-hero-scale-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.2rem 1rem;
+  margin: 0;
+  align-items: start;
+}
+
+.project-pankou-restoration .project2-hero-scale-item {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.1rem 0.25rem;
+  align-items: start;
+  margin: 0;
+  padding-right: 0;
+  min-width: 0;
+}
+
+.project-pankou-restoration .project2-hero-scale-value {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--p2-accent-color);
+}
+
+.project-pankou-restoration .project2-hero-scale-item dt,
+.project-pankou-restoration .project2-hero-scale-value {
+  display: block;
+}
+
+.project-pankou-restoration .project2-hero-scale-item dd {
+  display: block;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--p2-body-color);
+}
+
+.project-pankou-restoration .project-hero-cover {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.project-pankou-restoration .project-image-slot--hero.project-image-slot--contain {
+  width: 100%;
+  aspect-ratio: auto;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  position: relative;
+  overflow: hidden;
+  background: #f7f1e8;
+}
+
+.project-pankou-restoration .project-image-slot--hero.project-image-slot--contain .project-image-photo,
+.project-pankou-restoration .project-image-slot--hero.project-image-slot--contain .project-image-photo--contain {
+  position: absolute;
+  inset: 0.5rem;
+  display: block;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+  object-fit: contain;
+  object-position: center;
+}
+
+.project-pankou-restoration .project-visual-caption {
+  flex-shrink: 0;
+  margin: 0.35rem 0 0;
+}
+
+@media (min-width: 768px) {
+  .project-pankou-restoration .project2-hero {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .project-pankou-restoration .project-hero-text {
+    align-self: start;
+  }
+
+  .project-pankou-restoration .project-hero-cover {
+    align-self: stretch;
+    height: 100%;
+  }
+
+  .project-pankou-restoration .project-image-slot--hero.project-image-slot--contain {
+    flex: 1 1 auto;
+  }
+
+  .project-pankou-restoration .project2-hero-panel {
+    gap: 0.625rem;
+    margin-top: 0.28rem;
+  }
+
+  .project-pankou-restoration .project2-hero-scale .project2-hero-mini-heading {
+    margin-bottom: 0.15rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-pankou-restoration .project-hero-cover {
+    height: auto;
+  }
+
+  .project-pankou-restoration .project2-hero-scale-list {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .project-pankou-restoration .project-image-slot--hero.project-image-slot--contain {
+    flex: none;
+    aspect-ratio: 731 / 1024;
+    max-height: min(72vw, 360px);
+    max-width: 100%;
+  }
+}
+
+.project-pankou-restoration .project2-visual-evidence-section {
+  margin-top: 1.125rem;
+}
+
+.project-pankou-restoration .project-section-description {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  font-weight: 400;
+  color: rgb(61 43 31 / 74%);
+}
+
+.project-pankou-restoration .project-detail-overview {
+  max-width: none;
+}
+
+/* 3D Reconstruction — match restoration workflow module proportions */
+
+.project-pankou-restoration #structural-reconstruction .project2-reconstruction-viewer-container {
+  justify-content: center;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.project-pankou-restoration #structural-reconstruction .project2-reconstruction-viewer-pedestal {
+  width: 100%;
+  max-width: none;
+  padding: 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(91, 70, 58, 0.12);
+  background: rgba(255, 252, 247, 0.78);
+  box-shadow: 0 12px 32px rgba(91, 70, 58, 0.04);
+  box-sizing: border-box;
+}
+
+.project-pankou-restoration #structural-reconstruction .project2-reconstruction-viewer {
+  height: min(440px, 52vw);
+  min-height: 380px;
+  border-radius: 18px;
+  border: 1px solid rgba(91, 70, 58, 0.1);
+  overflow: hidden;
+}
+
+.project-pankou-restoration #structural-reconstruction .purpose {
+  max-width: none;
+}
+
+@media (max-width: 767px) {
+  .project-pankou-restoration #structural-reconstruction .project2-reconstruction-viewer {
+    height: min(360px, 68vw);
+    min-height: 300px;
+  }
+
+  .project-pankou-restoration #structural-reconstruction .project2-reconstruction-viewer-pedestal {
+    padding: 16px;
+    border-radius: 22px;
+  }
+}
+
+/* Project narrative — compact index tags */
+
+.project-pankou-restoration .project-process-timeline--narrative {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.project-pankou-restoration .project-process-timeline--narrative .project-process-step {
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.26rem 0.48rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.project-pankou-restoration .project-process-timeline--narrative .project-process-index {
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-pankou-restoration .project-process-timeline--narrative .project-process-label {
+  font-size: 0.625rem;
+}
+
+@media (max-width: 720px) {
+  .project-pankou-restoration .project-process-timeline--narrative {
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Embroidery Restoration Game ── */
+
+.project-pankou-restoration .project2-visual-evidence-section .section-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--p2-accent-color);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-game {
+  position: relative;
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(91, 70, 58, 0.12);
+  background: rgba(255, 252, 247, 0.78);
+  box-shadow: 0 12px 32px rgba(91, 70, 58, 0.04);
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover {
+  position: absolute;
+  right: calc(50% + 210px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 230px;
+  z-index: 30;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(184, 116, 96, 0.22);
+  background: rgba(255, 252, 247, 0.94);
+  box-shadow: 0 14px 34px rgba(91, 70, 58, 0.1);
+  backdrop-filter: blur(8px);
+  animation: restorationPopoverIn 0.28s ease both;
+}
+
+@keyframes restorationPopoverIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover span {
+  display: block;
+  margin-bottom: 7px;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #b87460;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover h3 {
+  margin: 0 0 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #3f2c27;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover p {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.52;
+  color: #8d7f75;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover-image {
+  width: 100%;
+  margin: 8px 0 10px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(91, 70, 58, 0.1);
+  background: rgba(247, 234, 223, 0.42);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(0.96);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover-source {
+  margin-top: 8px !important;
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+  color: #a99d95 !important;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover-source em {
+  font-style: italic;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-stage-image-container {
+  width: 100%;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 8px 0 10px;
+  background: transparent;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-stage-image-container img {
+  display: block;
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-stage-image {
+  filter: saturate(0.92) contrast(0.98);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-line-sketch-image {
+  object-view-box: inset(2.83% 11.48% 3.52% 7.26%);
+  mix-blend-mode: multiply;
+  filter: contrast(1.08);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-model-image {
+  object-view-box: inset(4.49% 13.42% 4.4% 14.94%);
+  mix-blend-mode: multiply;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-rendering-image {
+  object-view-box: inset(1.18% 6.09% 0.59% 21.74%);
+  mix-blend-mode: multiply;
+  filter: contrast(1.06) saturate(1.04);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage--inspectable {
+  cursor: zoom-in;
+  z-index: 3;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop-magnifier-lens {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  border: 2px solid rgba(180, 120, 90, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 252, 247, 0.35);
+  z-index: 4;
+  transition: left 0.06s ease-out, top 0.06s ease-out;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-restoration-image--lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  max-height: none;
+  padding: 24px;
+  object-fit: contain;
+  opacity: 1 !important;
+  filter: none !important;
+  transform-origin: top left;
+}
+
+@media (hover: none) {
+  .project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage--inspectable {
+    cursor: pointer;
+  }
+}
+
+@supports not (object-view-box: inset(0)) {
+  .project-pankou-restoration .project2-visual-evidence-section .restoration-line-sketch-image {
+    transform: scale(1.18);
+    transform-origin: center center;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .restoration-model-image {
+    transform: scale(1.35);
+    transform-origin: center center;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .restoration-rendering-image {
+    transform: scale(1.39);
+    transform-origin: center center;
+  }
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(320px, calc(100vw - 48px));
+  max-width: 320px;
+  padding: 24px;
+  border-radius: 24px;
+  right: calc(50% + 168px);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover-step02 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 .restoration-evidence-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-evidence-image-wrap {
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(184, 116, 96, 0.22);
+  background: rgba(247, 234, 223, 0.42);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-evidence-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 .restoration-evidence-label {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #8d7f75;
+  text-align: center;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 .restoration-evidence-caption {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.45;
+  color: #a99d95;
+  text-align: center;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 .parameter-card {
+  padding: 16px 18px;
+  border-radius: 18px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 .parameter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(184, 116, 96, 0.08);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 .parameter-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-parameters {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 252, 247, 0.8);
+  border: 1px solid rgba(184, 116, 96, 0.18);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-parameters-heading,
+.project-pankou-restoration .project2-visual-evidence-section .restoration-evidence-heading {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #b87460;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .parameter-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .parameter-row:last-child {
+  margin-bottom: 0;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .parameter-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+  color: #9c8c82;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .parameter-value {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+  color: #4a3830;
+  word-break: break-word;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-evidence-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-evidence-label {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #8d7f75;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .restoration-evidence-caption {
+  margin: 8px 0 0;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.45;
+  color: #a99d95;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-header span {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p2-accent-color);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-header strong {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6b5147;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+  padding: 8px 0 4px;
+  overflow: visible;
+  width: 100%;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  align-self: center;
+  overflow: visible;
+  width: min(320px, 44vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  margin: 0 auto;
+  padding: 11px;
+  cursor: pointer;
+  pointer-events: auto;
+  background:
+    radial-gradient(circle at 45% 35%, rgba(255, 245, 232, 0.65), transparent 32%),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      rgba(160, 105, 78, 0.12) 0px,
+      rgba(160, 105, 78, 0.12) 1px,
+      rgba(222, 187, 160, 0.16) 2px,
+      rgba(222, 187, 160, 0.16) 5px
+    ),
+    linear-gradient(135deg, #e9cdb6 0%, #c99b7c 48%, #f0d9c5 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(120, 75, 52, 0.16),
+    inset 0 0 0 6px rgba(255, 246, 237, 0.36),
+    0 10px 24px rgba(91, 70, 58, 0.07);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(120, 75, 52, 0.18);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 246, 237, 0.5);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .fabric-surface {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(91, 70, 58, 0.018) 0px,
+      rgba(91, 70, 58, 0.018) 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(91, 70, 58, 0.012) 0px,
+      rgba(91, 70, 58, 0.012) 1px,
+      transparent 1px,
+      transparent 11px
+    ),
+    radial-gradient(circle at 50% 48%, rgba(255, 252, 247, 0.98), rgba(247, 234, 223, 0.72));
+  box-shadow:
+    inset 0 0 24px rgba(160, 105, 78, 0.06);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage {
+  position: absolute;
+  inset: 0;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop--idle .pankou-image-stage::before {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(216, 179, 106, 0.22) 0%,
+    rgba(217, 139, 123, 0.07) 46%,
+    transparent 74%
+  );
+  animation: pankouIdleGlow 3s ease-in-out infinite;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  transform: translate(-50%, -50%);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(232, 184, 154, 0.32) 0%,
+    rgba(216, 179, 106, 0.14) 45%,
+    transparent 72%
+  );
+  animation: embroideryFireworkGlow 3s ease-out infinite;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__core {
+  fill: #e8b89a;
+  opacity: 0;
+  transform-origin: 20px 20px;
+  animation: embroideryFireworkCore 3s ease-out infinite;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__burst {
+  transform-origin: 20px 20px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__particle {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: embroideryFireworkParticle 3s ease-out infinite;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__particle--coral {
+  fill: #d98b7b;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__particle--gold {
+  fill: #d8b36a;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__particle--peach {
+  fill: #e8b89a;
+}
+
+@keyframes embroideryFireworkGlow {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  12% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+  30% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  60% {
+    opacity: 0.28;
+    transform: scale(1.15);
+  }
+  85% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes embroideryFireworkCore {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  8% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 0.75;
+    transform: scale(0.95);
+  }
+  60% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+  85% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes embroideryFireworkParticle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.25);
+  }
+  18% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.35);
+  }
+  30% {
+    opacity: 0.82;
+    transform: translate(calc(var(--fx-tx) * 0.55), calc(var(--fx-ty) * 0.55)) scale(0.85);
+  }
+  60% {
+    opacity: 0.72;
+    transform: translate(var(--fx-tx), var(--fx-ty)) scale(1);
+  }
+  85% {
+    opacity: 0;
+    transform: translate(var(--fx-tx), var(--fx-ty)) scale(0.4);
+  }
+}
+
+@keyframes pankouIdleGlow {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+  22% {
+    opacity: 0.52;
+    transform: scale(1.018);
+  }
+  46% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-pankou-restoration .project2-visual-evidence-section .embroidery-firework,
+  .project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__glow,
+  .project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__core,
+  .project-pankou-restoration .project2-visual-evidence-section .embroidery-firework__particle,
+  .project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop--idle .pankou-image-stage::before {
+    animation: none;
+  }
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-restoration-image,
+.project-pankou-restoration .project2-visual-evidence-section .pankou-stage-image {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+  background: transparent !important;
+  mix-blend-mode: normal !important;
+  opacity: 0;
+  transform: scale(0.98);
+  filter: none;
+  transition:
+    opacity 0.8s ease,
+    filter 0.8s ease,
+    transform 0.8s ease;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage[data-reveal-step='2'] .pankou-restoration-image.visible {
+  opacity: 0.25;
+  transform: scale(0.98);
+  filter: blur(2px) contrast(0.85) saturate(0.75);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage[data-reveal-step='3'] .pankou-restoration-image.visible {
+  opacity: 0.5;
+  transform: scale(0.99);
+  filter: blur(1px) contrast(1) saturate(0.85);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage[data-reveal-step='4'] .pankou-restoration-image.visible {
+  opacity: 0.75;
+  transform: scale(0.995);
+  filter: blur(0.3px) contrast(1.05) saturate(0.95);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .pankou-image-stage[data-reveal-step='5'] .pankou-restoration-image.visible {
+  opacity: 1;
+  transform: scale(1);
+  filter: none;
+}
+
+/* ── Stitch glow ── */
+
+.project-pankou-restoration .project2-visual-evidence-section .stitch-glow {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(198, 128, 118, 0.14) 0%,
+    rgba(216, 179, 106, 0.06) 40%,
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .stitch-glow.active {
+  animation: stitchGlowPulse 1.05s ease-out forwards;
+}
+
+@keyframes stitchGlowPulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+  32% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+}
+
+/* ── Needle & thread animation ── */
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 20;
+  overflow: visible;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer.active {
+  opacity: 1;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-path {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 12;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-needle {
+  position: absolute;
+  left: 18px;
+  top: 34px;
+  width: 42px;
+  height: 11px;
+  transform: rotate(132deg);
+  transform-origin: center;
+  filter: drop-shadow(0 0.5px 1.5px rgba(90, 80, 72, 0.14));
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-body {
+  position: absolute;
+  left: 5px;
+  top: 4.5px;
+  width: 28px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #fafaf8 0%,
+    #ececea 18%,
+    #d8d8d4 42%,
+    #c4c4c0 68%,
+    #b0b0ac 100%
+  );
+  box-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.85),
+    0 1px 1.5px rgba(110, 105, 98, 0.1);
+  z-index: 3;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-body::after {
+  content: "";
+  position: absolute;
+  top: -0.5px;
+  left: 12%;
+  width: 55%;
+  height: 0.5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-eye {
+  position: absolute;
+  left: 1.5px;
+  top: 2.5px;
+  width: 3.5px;
+  height: 3.5px;
+  border: 0.7px solid #b4b4b0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #ffffff 0%, #f2f2f0 55%, rgba(240, 238, 234, 0.4) 100%);
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-tip {
+  position: absolute;
+  left: 32px;
+  top: 2px;
+  width: 9px;
+  height: 5.5px;
+  background: linear-gradient(90deg, #d6d6d2 0%, #b8b8b4 45%, #989894 85%, #888884 100%);
+  clip-path: polygon(0 28%, 100% 50%, 0 72%);
+  z-index: 4;
+  filter: drop-shadow(0 0.5px 0.5px rgba(120, 115, 108, 0.15));
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-trail {
+  position: absolute;
+  left: -22px;
+  top: -5px;
+  width: 30px;
+  height: 16px;
+  border-top: 1px solid rgba(198, 128, 118, 0.42);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform: rotate(-18deg);
+  z-index: 0;
+  opacity: 0.75;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-back {
+  position: absolute;
+  left: -14px;
+  top: 2px;
+  width: 16px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(198, 128, 118, 0.45) 35%,
+    rgba(210, 140, 130, 0.72) 100%
+  );
+  transform: rotate(-22deg);
+  z-index: 1;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-through {
+  position: absolute;
+  left: 3px;
+  top: 5px;
+  width: 5px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(210, 140, 130, 0.85), rgba(198, 128, 118, 0.9));
+  z-index: 4;
+  box-shadow: 0 0 1px rgba(232, 178, 168, 0.35);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-front {
+  position: absolute;
+  left: 7px;
+  top: 3.5px;
+  width: 16px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(210, 140, 130, 0.92) 0%,
+    rgba(198, 128, 118, 0.78) 60%,
+    rgba(188, 118, 108, 0.55) 100%
+  );
+  transform: rotate(-4deg);
+  z-index: 6;
+  box-shadow: 0 0 1.5px rgba(232, 178, 168, 0.3);
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer.active .embroidery-needle {
+  animation: leftTiltNeedleStitch 1.05s ease-in-out forwards;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer.active .needle-thread-trail {
+  animation: leftTiltThreadTrail 1.05s ease-in-out forwards;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer.active .needle-thread-front {
+  animation: leftTiltThreadPull 1.05s ease-in-out forwards;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer.active .needle-thread-back {
+  animation: leftTiltThreadBack 1.05s ease-in-out forwards;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .needle-thread-layer.active .needle-thread-through {
+  animation: leftTiltThreadThrough 1.05s ease-in-out forwards;
+}
+
+@keyframes leftTiltNeedleStitch {
+  0% {
+    opacity: 0;
+    transform: translate(10px, -10px) rotate(132deg) scale(0.9);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(5px, -5px) rotate(132deg) scale(0.96);
+  }
+  38% {
+    opacity: 1;
+    transform: translate(-2px, 3px) rotate(130deg) scale(0.96);
+  }
+  52% {
+    opacity: 1;
+    transform: translate(1px, -1px) rotate(134deg) scale(0.96);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-5px, 5px) rotate(131deg) scale(0.96);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-12px, 12px) rotate(132deg) scale(0.92);
+  }
+}
+
+@keyframes leftTiltThreadTrail {
+  0% {
+    opacity: 0;
+    transform: rotate(-18deg) scaleX(0.35);
+  }
+  30% {
+    opacity: 0.55;
+    transform: rotate(-16deg) scaleX(0.7);
+  }
+  65% {
+    opacity: 0.75;
+    transform: rotate(-18deg) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-20deg) scaleX(1.04);
+  }
+}
+
+@keyframes leftTiltThreadPull {
+  0% {
+    opacity: 0;
+    transform: rotate(-4deg) scaleX(0.35);
+  }
+  32% {
+    opacity: 0.72;
+    transform: rotate(-3deg) scaleX(0.72);
+  }
+  66% {
+    opacity: 0.88;
+    transform: rotate(-4deg) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-5deg) scaleX(1.03);
+  }
+}
+
+@keyframes leftTiltThreadBack {
+  0% {
+    opacity: 0;
+    transform: rotate(-22deg) scaleX(0.4);
+  }
+  32% {
+    opacity: 0.58;
+    transform: rotate(-20deg) scaleX(0.75);
+  }
+  68% {
+    opacity: 0.72;
+    transform: rotate(-22deg) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-24deg) scaleX(1.02);
+  }
+}
+
+@keyframes leftTiltThreadThrough {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.3);
+  }
+  35% {
+    opacity: 0.85;
+    transform: scaleX(0.85);
+  }
+  70% {
+    opacity: 0.95;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+/* ── Click hint, progress dots ── */
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-click-hint {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #a99d95;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .stitch-progress-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .stitch-progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(91, 70, 58, 0.12);
+  transition: width 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .stitch-progress-dots.is-stitching .stitch-progress-dot {
+  pointer-events: none;
+  cursor: default;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .stitch-progress-dot.filled {
+  width: 18px;
+  background: #b87460;
+}
+
+.project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop:focus-visible {
+  outline: 2px solid rgba(184, 116, 96, 0.55);
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-game {
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-main {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .restoration-popover {
+    position: static;
+    width: 100%;
+    max-width: 320px;
+    margin: 16px auto 0;
+    transform: none;
+    animation: restorationPopoverMobileIn 0.28s ease both;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .restoration-popover--step02 {
+    max-width: 360px;
+    right: auto;
+  }
+
+  @keyframes restorationPopoverMobileIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .pankou-embroidery-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .embroidery-hoop {
+    width: min(300px, 82vw);
+    padding: 10px;
+  }
+
+  .project-pankou-restoration .project2-visual-evidence-section .pankou-restoration-image,
+  .project-pankou-restoration .project2-visual-evidence-section .pankou-stage-image {
+    padding: 20px;
+  }
+}
+
+/* Restoration Process Overview — collapsible accordion */
+
+.project-pankou-restoration .restoration-process-overview {
+  max-width: 760px;
+  margin: 1.25rem auto 0;
+  border: 1px solid var(--p2-border-color);
+  border-radius: 1rem;
+  background: rgb(255 252 247 / 72%);
+  overflow: hidden;
+}
+
+.project-pankou-restoration .restoration-process-overview__header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.9rem 1.1rem 0.9rem 1.35rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.2s ease;
+}
+
+.project-pankou-restoration .restoration-process-overview__header:hover {
+  background: rgb(247 234 223 / 28%);
+}
+
+.project-pankou-restoration .restoration-process-overview__header:focus-visible {
+  outline: 2px solid rgb(184 116 96 / 42%);
+  outline-offset: -2px;
+}
+
+.project-pankou-restoration .restoration-process-overview__header-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.project-pankou-restoration .restoration-process-overview__header-text strong {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--p2-title-color);
+}
+
+.project-pankou-restoration .restoration-process-overview__header-text span {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--p2-muted-color);
+}
+
+.project-pankou-restoration .restoration-process-overview__toggle {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid rgb(184 116 96 / 28%);
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--p2-accent-color);
+  transition: transform 0.25s ease;
+}
+
+.project-pankou-restoration .restoration-process-overview.is-expanded .restoration-process-overview__toggle {
+  transform: rotate(180deg);
+}
+
+.project-pankou-restoration .restoration-process-overview__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.project-pankou-restoration .restoration-process-overview.is-expanded .restoration-process-overview__panel {
+  grid-template-rows: 1fr;
+}
+
+.project-pankou-restoration .restoration-process-overview__panel-inner {
+  overflow: hidden;
+}
+
+.project-pankou-restoration .restoration-process-overview.is-expanded .restoration-process-overview__panel-inner {
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--p2-border-color);
+}
+
+/* Reconstruction Timeline */
+
+.project-pankou-restoration .pankou-reconstruction-timeline {
+  position: relative;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__track {
+  position: absolute;
+  top: 2.15rem;
+  left: 4%;
+  right: 4%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgb(184 116 96 / 8%),
+    rgb(184 116 96 / 42%) 18%,
+    rgb(184 116 96 / 42%) 82%,
+    rgb(184 116 96 / 8%)
+  );
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__step-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  border-radius: 0.65rem;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__step-button:hover {
+  background: rgb(247 234 223 / 32%);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__step-button:focus-visible {
+  outline: 2px solid rgb(184 116 96 / 42%);
+  outline-offset: 2px;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__step-button.is-selected {
+  background: rgb(247 234 223 / 48%);
+  box-shadow: inset 0 0 0 1px rgb(184 116 96 / 28%);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__step-button.is-selected .pankou-reconstruction-timeline__node {
+  border-color: rgb(184 116 96 / 58%);
+  background: rgb(247 234 223 / 88%);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgb(184 116 96 / 34%);
+  border-radius: 50%;
+  background: rgb(255 252 247 / 96%);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__index {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--p2-accent-color);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__frame {
+  width: 100%;
+  margin: 0 0 0.65rem;
+  padding: 0.45rem;
+  border: 1px solid var(--p2-border-color);
+  border-radius: 0.65rem;
+  background: rgb(255 252 247 / 88%);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__frame img {
+  display: block;
+  width: 100%;
+  height: 4.5rem;
+  object-fit: contain;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__labels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__labels strong {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--p2-title-color);
+}
+
+.project-pankou-restoration .pankou-reconstruction-timeline__labels span {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  color: var(--p2-muted-color);
+}
+
+@media (max-width: 960px) {
+  .project-pankou-restoration .pankou-reconstruction-timeline__track {
+    display: none;
+  }
+
+  .project-pankou-restoration .pankou-reconstruction-timeline__steps {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-pankou-restoration .pankou-reconstruction-timeline__step {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: left;
+  }
+
+  .project-pankou-restoration .pankou-reconstruction-timeline__step-button {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: left;
+  }
+
+  .project-pankou-restoration .pankou-reconstruction-timeline__node {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .project-pankou-restoration .pankou-reconstruction-timeline__frame {
+    width: 5.5rem;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+}
+
