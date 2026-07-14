@@ -1,9 +1,12 @@
-import { Center, ContactShadows, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
 import {
   Component,
+  Suspense,
+  memo,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type ReactNode,
@@ -11,67 +14,35 @@ import {
 } from 'react';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from 'three';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import type { EulerRotation } from '../../data/project2ReconstructionModels';
+import {
+  FIT_TARGET_SIZE,
+  clearModelInstanceCache,
+  computeWorldBoundingBox,
+  detachModel,
+  hasCachedModel,
+  loadModelInstance,
+} from './project2ModelLoader';
 import styles from './Project2FbxViewer.module.css';
 
-const FIT_TARGET_SIZE = 1.48;
-const CAMERA_PADDING = 1.06;
+// Drop stale in-memory instances from older fit/center pipelines (HMR / prior session)
+clearModelInstanceCache();
+
+const CAMERA_PADDING = 1.15;
 const CLICK_DRAG_THRESHOLD_SQ = 144;
-
-const modelTemplateCache = new Map<string, THREE.Object3D>();
-const modelLoadPromises = new Map<string, Promise<THREE.Object3D>>();
-
-function computeWorldBoundingBox(model: THREE.Object3D): THREE.Box3 {
-  const box = new THREE.Box3();
-  let hasGeometry = false;
-
-  model.updateMatrixWorld(true);
-  model.traverse((child) => {
-    const mesh = child as THREE.Mesh;
-    if (!mesh.isMesh || !mesh.geometry) return;
-
-    mesh.geometry.computeBoundingBox();
-    if (!mesh.geometry.boundingBox) return;
-
-    const geometryBox = mesh.geometry.boundingBox.clone();
-    geometryBox.applyMatrix4(mesh.matrixWorld);
-    box.union(geometryBox);
-    hasGeometry = true;
-  });
-
-  if (!hasGeometry) {
-    box.setFromObject(model);
-  }
-
-  return box;
-}
-
-function autoFitModel(model: THREE.Object3D, targetSize: number = FIT_TARGET_SIZE): number {
-  const box = computeWorldBoundingBox(model);
-  const size = new THREE.Vector3();
-  box.getSize(size);
-  const maxDim = Math.max(size.x, size.y, size.z);
-
-  if (!Number.isFinite(maxDim) || maxDim <= 0) {
-    return 1;
-  }
-
-  const scale = targetSize / maxDim;
-  model.scale.setScalar(scale);
-  model.updateMatrixWorld(true);
-  return scale;
-}
+const DEFAULT_ROTATION: EulerRotation = [0, 0, 0];
 
 function adjustCameraToModel(
   camera: THREE.PerspectiveCamera,
   maxDim: number,
   padding: number = CAMERA_PADDING,
 ): number {
+  const safeDim = Number.isFinite(maxDim) && maxDim > 0.1 ? maxDim : FIT_TARGET_SIZE;
   const fovRadians = (camera.fov * Math.PI) / 180;
-  const distance = (maxDim / 2 / Math.tan(fovRadians / 2)) * padding;
-  const verticalLift = maxDim * 0.02;
+  const distance = (safeDim / 2 / Math.tan(fovRadians / 2)) * padding;
+  const verticalLift = safeDim * 0.04;
 
-  camera.position.set(0, verticalLift, distance);
+  camera.position.set(0, verticalLift, Math.max(distance, 1.6));
   camera.near = Math.max(0.01, distance / 100);
   camera.far = Math.max(100, distance * 20);
   camera.lookAt(0, 0, 0);
@@ -80,143 +51,84 @@ function adjustCameraToModel(
   return distance;
 }
 
-function prepareFittedModel(source: THREE.Object3D): THREE.Object3D {
-  const model = source.clone(true);
+type DisplayedModel = {
+  url: string;
+  model: THREE.Object3D;
+  rotation: EulerRotation;
+  scale: number;
+};
 
-  model.visible = true;
-  model.traverse((child) => {
-    child.visible = true;
-
-    const mesh = child as THREE.Mesh;
-    if (!mesh.isMesh) return;
-
-    mesh.frustumCulled = false;
-    const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
-    materials.forEach((material) => {
-      if (!material) return;
-      material.visible = true;
-      material.side = THREE.DoubleSide;
-      material.needsUpdate = true;
-
-      if ('color' in material && material.color instanceof THREE.Color && !('map' in material && material.map)) {
-        const hsl = { h: 0, s: 0, l: 0 };
-        material.color.getHSL(hsl);
-        if (hsl.l > 0.82) {
-          material.color.set('#9a6a58');
-        }
-      }
-    });
-  });
-
-  model.updateMatrixWorld(true);
-  autoFitModel(model, FIT_TARGET_SIZE);
-
-  return model;
-}
-
-function loadFbxTemplate(url: string): Promise<THREE.Object3D> {
-  const cached = modelTemplateCache.get(url);
-  if (cached) {
-    return Promise.resolve(cached);
-  }
-
-  const pending = modelLoadPromises.get(url);
-  if (pending) {
-    return pending;
-  }
-
-  const promise = new Promise<THREE.Object3D>((resolve, reject) => {
-    const loader = new FBXLoader();
-    loader.load(
-      url,
-      (fbx) => {
-        const prepared = prepareFittedModel(fbx);
-        modelTemplateCache.set(url, prepared);
-        modelLoadPromises.delete(url);
-        resolve(prepared);
-      },
-      undefined,
-      (error) => {
-        modelLoadPromises.delete(url);
-        reject(error instanceof Error ? error : new Error('Failed to load FBX model'));
-      },
-    );
-  });
-
-  modelLoadPromises.set(url, promise);
-  return promise;
-}
-
-function disposeObject3D(object: THREE.Object3D) {
-  object.traverse((child) => {
-    if (!(child instanceof THREE.Mesh)) return;
-
-    child.geometry.dispose();
-
-    const materials = Array.isArray(child.material) ? child.material : [child.material];
-    materials.forEach((material) => {
-      if (!material) return;
-      material.dispose();
-    });
-  });
-}
-
-function useFbxSceneInstance(url: string) {
-  const [sceneModel, setSceneModel] = useState<THREE.Object3D | null>(null);
-  const [isLoading, setIsLoading] = useState(() => !modelTemplateCache.has(url));
+/**
+ * Loads only the requested URL. Cached models swap instantly.
+ * Keeps the previous model visible while a new one downloads.
+ */
+function useModelSceneInstance(url: string, rotation: EulerRotation, scale: number) {
+  const [displayed, setDisplayed] = useState<DisplayedModel | null>(null);
+  const [isLoading, setIsLoading] = useState(() => !hasCachedModel(url));
   const [error, setError] = useState<Error | null>(null);
+  const requestIdRef = useRef(0);
+  const rotationKey = `${rotation[0]},${rotation[1]},${rotation[2]}`;
 
   useEffect(() => {
+    const requestId = ++requestIdRef.current;
     let cancelled = false;
 
-    const applyTemplate = (template: THREE.Object3D) => {
-      if (cancelled) return;
+    setError(null);
 
-      setSceneModel((previous) => {
-        if (previous) {
-          disposeObject3D(previous);
-        }
-        return template.clone(true);
+    const applyInstance = (instance: THREE.Object3D) => {
+      if (cancelled || requestId !== requestIdRef.current) return;
+
+      // Ensure the cached root is free to attach to the current R3F tree
+      detachModel(instance);
+      instance.visible = true;
+      instance.traverse((child) => {
+        child.visible = true;
       });
+
+      setDisplayed({ url, model: instance, rotation, scale });
       setIsLoading(false);
       setError(null);
     };
 
-    setError(null);
-
-    if (modelTemplateCache.has(url)) {
-      applyTemplate(modelTemplateCache.get(url)!);
-    } else {
-      setIsLoading(true);
-      loadFbxTemplate(url)
-        .then(applyTemplate)
-        .catch((loadError) => {
-          if (cancelled) return;
-          setError(loadError instanceof Error ? loadError : new Error('Failed to load FBX model'));
-          setIsLoading(false);
-        });
+    if (hasCachedModel(url)) {
+      setIsLoading(false);
+      void loadModelInstance(url).then(applyInstance).catch((loadError) => {
+        if (cancelled || requestId !== requestIdRef.current) return;
+        console.error('[Project2 3D] Cached model apply failed:', url, loadError);
+        setError(loadError instanceof Error ? loadError : new Error('Failed to load 3D model'));
+        setIsLoading(false);
+      });
+      return () => {
+        cancelled = true;
+      };
     }
+
+    setIsLoading(true);
+
+    loadModelInstance(url)
+      .then(applyInstance)
+      .catch((loadError) => {
+        if (cancelled || requestId !== requestIdRef.current) return;
+        console.error('[Project2 3D] Model load failed:', url, loadError);
+        setError(loadError instanceof Error ? loadError : new Error('Failed to load 3D model'));
+        setIsLoading(false);
+      });
 
     return () => {
       cancelled = true;
     };
-  }, [url]);
+    // rotationKey captures rotation tuple changes without unstable array identity issues
+  }, [url, rotationKey, rotation, scale]);
 
-  useEffect(() => {
-    return () => {
-      setSceneModel((previous) => {
-        if (previous) {
-          disposeObject3D(previous);
-        }
-        return null;
-      });
-    };
-  }, []);
-
-  return { sceneModel, isLoading, error };
+  return {
+    displayed,
+    isLoading,
+    error,
+    hasVisibleModel: displayed !== null,
+  };
 }
 
-function ClickableFbxPrimitive({
+function ClickableModelPrimitive({
   model,
   onModelClick,
 }: {
@@ -281,79 +193,91 @@ function ClickableFbxPrimitive({
   return <primitive object={model} />;
 }
 
-function FbxModel({
+const FittedModel = memo(function FittedModel({
   model,
+  rotation,
+  scale,
   controlsRef,
   onModelClick,
-  cameraFittedRef,
 }: {
   model: THREE.Object3D;
+  rotation: EulerRotation;
+  scale: number;
   controlsRef: RefObject<OrbitControlsImpl | null>;
   onModelClick?: () => void;
-  cameraFittedRef: RefObject<boolean>;
 }) {
   const { camera } = useThree();
+  const rootRef = useRef<THREE.Group>(null);
 
   useLayoutEffect(() => {
-    if (cameraFittedRef.current) return;
     if (!(camera instanceof THREE.PerspectiveCamera)) return;
 
-    const fittedBox = computeWorldBoundingBox(model);
+    const root = rootRef.current;
+    if (!root) return;
+
+    root.updateMatrixWorld(true);
+    const fittedBox = computeWorldBoundingBox(root);
     const fittedSize = new THREE.Vector3();
     fittedBox.getSize(fittedSize);
-    const maxDim = Math.max(
-      fittedSize.x,
-      fittedSize.y,
-      fittedSize.z,
-      FIT_TARGET_SIZE,
-    );
 
+    const maxDim = Math.max(fittedSize.x, fittedSize.y, fittedSize.z, FIT_TARGET_SIZE);
     const distance = adjustCameraToModel(camera, maxDim);
     const controls = controlsRef.current;
 
     if (controls) {
       controls.target.set(0, 0, 0);
-      controls.minDistance = Math.max(0.8, distance * 0.55);
-      controls.maxDistance = Math.max(controls.minDistance + 1.5, distance * 2.6);
+      controls.minDistance = Math.max(0.6, distance * 0.45);
+      controls.maxDistance = Math.max(controls.minDistance + 2, distance * 3);
       controls.update();
     }
-
-    cameraFittedRef.current = true;
-  }, [camera, cameraFittedRef, controlsRef, model]);
+  }, [camera, controlsRef, model, rotation, scale]);
 
   return (
-    <Center>
+    <group
+      ref={rootRef}
+      position={[0, 0, 0]}
+      rotation={rotation as unknown as [number, number, number]}
+      scale={scale}
+    >
       {onModelClick ? (
-        <ClickableFbxPrimitive model={model} onModelClick={onModelClick} />
+        <ClickableModelPrimitive model={model} onModelClick={onModelClick} />
       ) : (
         <primitive object={model} />
       )}
-    </Center>
+    </group>
   );
-}
+});
 
-type FbxErrorBoundaryProps = {
+type ModelErrorBoundaryProps = {
   children: ReactNode;
   error: Error | null;
+  resetKey: string;
 };
 
-type FbxErrorBoundaryState = {
+type ModelErrorBoundaryState = {
   caughtError: Error | null;
 };
 
-class FbxErrorBoundary extends Component<FbxErrorBoundaryProps, FbxErrorBoundaryState> {
-  state: FbxErrorBoundaryState = { caughtError: null };
+class ModelErrorBoundary extends Component<ModelErrorBoundaryProps, ModelErrorBoundaryState> {
+  state: ModelErrorBoundaryState = { caughtError: null };
 
-  static getDerivedStateFromError(error: Error): FbxErrorBoundaryState {
+  static getDerivedStateFromError(error: Error): ModelErrorBoundaryState {
     return { caughtError: error };
   }
 
   componentDidCatch(error: Error) {
-    console.error('[FBX] render error', error);
+    console.error('[Project2 3D] render error', error);
+  }
+
+  componentDidUpdate(prevProps: ModelErrorBoundaryProps) {
+    if (prevProps.resetKey !== this.props.resetKey && this.state.caughtError) {
+      this.setState({ caughtError: null });
+    }
   }
 
   render() {
-    if (this.state.caughtError || this.props.error) {
+    // Only hide on render exceptions — load failures use the overlay, not a blank scene
+    if (this.state.caughtError) {
       return null;
     }
 
@@ -361,50 +285,77 @@ class FbxErrorBoundary extends Component<FbxErrorBoundaryProps, FbxErrorBoundary
   }
 }
 
-function ViewerScene({
+function RendererColorSetup() {
+  const { gl } = useThree();
+
+  useLayoutEffect(() => {
+    gl.outputColorSpace = THREE.SRGBColorSpace;
+    gl.toneMapping = THREE.NeutralToneMapping;
+    gl.toneMappingExposure = 1.0;
+  }, [gl]);
+
+  return null;
+}
+
+function SceneEnvironment() {
+  return <Environment preset="studio" environmentIntensity={0.22} />;
+}
+
+const ViewerScene = memo(function ViewerScene({
   sceneModel,
+  rotation,
+  scale,
   onModelClick,
 }: {
   sceneModel: THREE.Object3D | null;
+  rotation: EulerRotation;
+  scale: number;
   onModelClick?: () => void;
 }) {
   const controlsRef = useRef<OrbitControlsImpl>(null);
-  const cameraFittedRef = useRef(false);
 
   return (
     <>
+      <RendererColorSetup />
       <color attach="background" args={['#fbf7ef']} />
-      <ambientLight intensity={0.75} color="#fff7ec" />
-      <hemisphereLight args={['#fff7ec', '#d8c8b8', 0.55]} />
+
+      <ambientLight intensity={0.38} color="#f6efe6" />
+      <hemisphereLight args={['#fff8f0', '#d2c2b2', 0.42]} />
       <directionalLight
-        position={[3, 5, 4]}
+        position={[2.2, 3.8, 5.2]}
         intensity={1.05}
-        color="#fff5e8"
+        color="#fff6ec"
         castShadow
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
       />
-      <directionalLight position={[-2, 3, -2]} intensity={0.28} color="#f5ebe0" />
+      <directionalLight position={[-3.4, 2.6, 3.8]} intensity={0.48} color="#f0e4d6" />
+      <directionalLight position={[0.2, 1.4, 4.6]} intensity={0.36} color="#fffaf3" />
+      <directionalLight position={[0.6, 2.8, -3.4]} intensity={0.12} color="#f5e6d6" />
+
+      {/* Suspense so HDRI load cannot blank the whole Canvas */}
+      <Suspense fallback={null}>
+        <SceneEnvironment />
+      </Suspense>
+
       {sceneModel ? (
-        <FbxModel
+        <FittedModel
           model={sceneModel}
+          rotation={rotation}
+          scale={scale}
           controlsRef={controlsRef}
           onModelClick={onModelClick}
-          cameraFittedRef={cameraFittedRef}
         />
       ) : null}
-      <ContactShadows
-        position={[0, -0.35, 0]}
-        opacity={0.35}
-        scale={8}
-        blur={2.5}
-        far={4}
-      />
+
+      <ContactShadows position={[0, -0.42, 0]} opacity={0.24} scale={8} blur={2.6} far={4} />
       <OrbitControls
         ref={controlsRef}
+        makeDefault
         enablePan={false}
-        minDistance={1.2}
-        maxDistance={4.5}
+        target={[0, 0, 0]}
+        minDistance={0.8}
+        maxDistance={8}
         minPolarAngle={Math.PI / 6}
         maxPolarAngle={Math.PI / 1.8}
         enableDamping
@@ -412,27 +363,54 @@ function ViewerScene({
       />
     </>
   );
-}
+});
 
 interface Project2FbxViewerProps {
   modelPath: string;
+  rotation?: EulerRotation;
+  scale?: number;
   onModelClick?: () => void;
   viewerClassName?: string;
   hint?: string;
 }
 
-export function Project2FbxViewer({
+function Project2FbxViewerComponent({
   modelPath,
+  rotation = DEFAULT_ROTATION,
+  scale = 1,
   onModelClick,
   viewerClassName,
   hint,
 }: Project2FbxViewerProps) {
-  const { sceneModel, isLoading, error } = useFbxSceneInstance(modelPath);
-  const hintText =
-    hint ??
-    (onModelClick
-      ? 'Drag to rotate · Scroll to zoom · Click artifact for structure'
-      : 'Drag to rotate · Scroll to zoom');
+  const { displayed, isLoading, error, hasVisibleModel } = useModelSceneInstance(
+    modelPath,
+    rotation,
+    scale,
+  );
+
+  const hintText = useMemo(
+    () =>
+      hint ??
+      (onModelClick
+        ? 'Drag to rotate · Scroll to zoom · Click artifact for structure'
+        : 'Drag to rotate · Scroll to zoom'),
+    [hint, onModelClick],
+  );
+
+  const canvasGl = useMemo(
+    () => ({
+      antialias: true,
+      alpha: false,
+      preserveDrawingBuffer: true,
+      outputColorSpace: THREE.SRGBColorSpace,
+      toneMapping: THREE.NeutralToneMapping,
+      toneMappingExposure: 1.0,
+      powerPreference: 'high-performance' as const,
+    }),
+    [],
+  );
+
+  const showError = Boolean(error) && !isLoading;
 
   return (
     <div
@@ -442,17 +420,34 @@ export function Project2FbxViewer({
       aria-label="Interactive 3D Pankou model viewer"
       aria-busy={isLoading}
     >
-      <Canvas
-        shadows
-        camera={{ position: [0, 0.35, 2.4], fov: 42 }}
-        gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }}
-      >
-        <FbxErrorBoundary error={error}>
-          <ViewerScene sceneModel={sceneModel} onModelClick={onModelClick} />
-        </FbxErrorBoundary>
+      <Canvas shadows dpr={[1, 1.5]} camera={{ position: [0, 0.35, 2.8], fov: 42 }} gl={canvasGl}>
+        <ModelErrorBoundary error={error} resetKey={modelPath}>
+          <ViewerScene
+            sceneModel={showError ? null : displayed?.model ?? null}
+            rotation={displayed?.rotation ?? rotation}
+            scale={displayed?.scale ?? scale}
+            onModelClick={onModelClick}
+          />
+        </ModelErrorBoundary>
       </Canvas>
-      {isLoading ? <p className={styles.viewerLoading}>Loading 3D Model...</p> : null}
+
+      {isLoading ? (
+        <p
+          className={`${styles.viewerLoading}${hasVisibleModel ? ` ${styles.viewerLoadingSoft}` : ''}`}
+        >
+          Loading 3D reconstruction...
+        </p>
+      ) : null}
+
+      {showError ? (
+        <p className={styles.viewerError} role="alert">
+          Failed to load 3D model
+        </p>
+      ) : null}
+
       <p className={styles.viewerHint}>{hintText}</p>
     </div>
   );
 }
+
+export const Project2FbxViewer = memo(Project2FbxViewerComponent);

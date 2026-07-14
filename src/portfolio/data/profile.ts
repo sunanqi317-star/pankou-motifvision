@@ -2,7 +2,7 @@ export const profile = {
   name: 'Anqi Sun',
   email: 'sunanqi317@gmail.com',
   cvPath: '/cv.pdf',
-  profileImage: '/images/profile.jpg',
+  profileImage: '/assets/image.jpg',
   academicIdentity: {
     role: 'Master of Design student',
     institution: 'China University of Geosciences, Beijing',
