@@ -40,10 +40,10 @@ export const aboutMeParagraphs: AboutMeSegment[][] = [
     },
   ],
   [
-    { text: 'I am preparing for ' },
+    { text: 'I am preparing to pursue ' },
     { text: 'PhD opportunities for 2027 entry', emphasis: true },
     {
-      text: ', with the aim of further investigating how emerging technologies can contribute to cultural understanding, knowledge representation, and experiential innovation. My future research interests focus on interdisciplinary approaches combining digital humanities, artificial intelligence, interaction design, and cultural studies.',
+      text: '. My strength lies in connecting cultural research, design practice, and computational methods. I explore how cultural heritage and cultural knowledge can be transformed into structured data, generative systems, and interactive experiences, and how research processes and project outcomes can be visually presented through web-based platforms.',
     },
   ],
   [
