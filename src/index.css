@@ -326,7 +326,7 @@ body {
 .main-layout .about-intro {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.7rem;
 }
 
 .main-layout #academic .content-card .card-title,

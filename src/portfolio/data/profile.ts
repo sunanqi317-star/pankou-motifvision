@@ -30,25 +30,20 @@ export const aboutMeParagraphs: AboutMeSegment[][] = [
     { text: 'China University of Geosciences, Beijing', emphasis: true },
     { text: ', and I am expected to graduate in ' },
     { text: 'June 2027', emphasis: true },
+    { text: '. I plan to pursue ' },
+    { text: 'PhD opportunities for the 2027 intake', emphasis: true },
     {
-      text: '. My research focuses on the relationship between cultural heritage, emerging technologies, and human-centered design, exploring how digital approaches and AI-assisted methods can support the interpretation, transformation, and communication of cultural knowledge.',
+      text: '. My research explores the relationship between cultural heritage, emerging technologies, and human experiences, focusing on how digital approaches and AI-assisted methods can support the understanding, transformation, and creative expression of cultural knowledge.',
     },
   ],
   [
     {
-      text: 'My current research investigates how traditional cultural knowledge can be documented, structured, and transformed through digital methods, computational approaches, and creative AI tools. Through projects involving cultural heritage digitization, generative design, and interactive experiences, I explore new ways of connecting historical narratives with contemporary forms of visual expression and human-centered experiences.',
-    },
-  ],
-  [
-    { text: 'I am preparing to pursue ' },
-    { text: 'PhD opportunities for 2027 entry', emphasis: true },
-    {
-      text: '. My strength lies in connecting cultural research, design practice, and computational methods. I explore how cultural heritage and cultural knowledge can be transformed into structured data, generative systems, and interactive experiences, and how research processes and project outcomes can be visually presented through web-based platforms.',
+      text: 'My current work investigates how cultural heritage materials can be collected, organized, and digitally transformed through computational approaches and artificial intelligence. I explore methods including historical image structuring, digital restoration and reconstruction, cultural element extraction, and generative design workflows to transform traditional knowledge into new forms of visual expression and interactive experiences.',
     },
   ],
   [
     {
-      text: 'Beyond academic research, I enjoy exploring food and traveling as ways of experiencing different cultures and lifestyles. These experiences continue to shape my understanding of cultural narratives, environmental contexts, and human-centered approaches to design research.',
+      text: 'Beyond academic research, I enjoy exploring different cultures and lifestyles through food and travel. These experiences inspire my understanding of cultural narratives, environmental contexts, and human-centered approaches to design research.',
     },
   ],
 ] as const;
