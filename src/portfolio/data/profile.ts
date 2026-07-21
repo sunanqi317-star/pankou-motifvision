@@ -24,26 +24,18 @@ export type AboutMeSegment = {
 
 export const aboutMeParagraphs: AboutMeSegment[][] = [
   [
-    { text: 'I am currently a ' },
-    { text: 'Master of Design student', emphasis: true },
-    { text: ' at ' },
-    { text: 'China University of Geosciences, Beijing', emphasis: true },
-    { text: ', and I am expected to graduate in ' },
-    { text: 'June 2027', emphasis: true },
-    { text: '. I plan to pursue ' },
-    { text: 'PhD opportunities for the 2027 intake', emphasis: true },
     {
-      text: '. My research explores the relationship between cultural heritage, emerging technologies, and human experiences, focusing on how digital approaches and AI-assisted methods can support the understanding, transformation, and creative expression of cultural knowledge.',
+      text: 'I am currently a Master of Design student at China University of Geosciences, Beijing, and I am expected to graduate in June 2027. I plan to pursue PhD opportunities for the 2027 intake. My research focuses on how digital technologies can contribute to the preservation, interpretation, and contemporary development of cultural heritage, with particular attention to cultural knowledge representation, creative transformation, and human-centered engagement.',
     },
   ],
   [
     {
-      text: 'My current work investigates how cultural heritage materials can be collected, organized, and digitally transformed through computational approaches and artificial intelligence. I explore methods including historical image structuring, digital restoration and reconstruction, cultural element extraction, and generative design workflows to transform traditional knowledge into new forms of visual expression and interactive experiences.',
+      text: 'My current work investigates how cultural heritage materials can be collected, organized, and digitally transformed through computational approaches and artificial intelligence. I explore methods including historical image structuring, digital restoration and reconstruction, cultural element extraction, and generative design workflows to translate traditional knowledge into new forms of visual expression and interactive experience.',
     },
   ],
   [
     {
-      text: 'Beyond academic research, I enjoy exploring different cultures and lifestyles through food and travel. These experiences inspire my understanding of cultural narratives, environmental contexts, and human-centered approaches to design research.',
+      text: 'Beyond academic research, I enjoy exploring different cultures and lifestyles through food and travel. These experiences deepen my understanding of cultural narratives, environmental contexts, and human-centered approaches to design research.',
     },
   ],
 ] as const;
